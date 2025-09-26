@@ -1,0 +1,28 @@
+---
+- name: Copy directory and run shell script
+  hosts: debian
+  become: yes
+  vars:
+    src_dir: ../pamBondi
+    dest_dir: ~/pamBondi
+    script_name: pamBondi.sh
+
+  tasks:
+    - name: Copy directory to remote hosts
+      copy:
+        src: "{{ src_dir }}/"
+        dest: "{{ dest_dir }}/"
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Ensure script is executable
+      file:
+        path: "{{ dest_dir }}/{{ script_name }}"
+        mode: '0755'
+
+    - name: Run the script
+      command: "{{ dest_dir }}/{{ script_name }}"
+      args:
+        chdir: "{{ dest_dir }}"
+

