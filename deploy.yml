@@ -1,6 +1,6 @@
 ---
 - name: Copy directory and run shell script
-  hosts: debian
+  hosts: test
   become: yes
   vars:
     src_dir: ../pamBondi
