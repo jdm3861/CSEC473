@@ -2,7 +2,7 @@
  
 ## usage 
 - edit listener to use your servers ip
-- build with gcc -o listener listner.c
+- build with gcc listener.c -o listener
 - run sudo ./pamBondi.sh
 - run ./listener
 - wait for creds on server 
