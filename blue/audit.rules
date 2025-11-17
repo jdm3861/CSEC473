@@ -1,0 +1,42 @@
+## ===== System Binaries =====
+-w /bin -p wa -k bin_changes
+-w /sbin -p wa -k bin_changes
+-w /usr/bin -p wa -k bin_changes
+-w /usr/sbin -p wa -k bin_changes
+
+## ===== User & Auth Files =====
+-w /etc/passwd -p wa -k user_mgmt
+-w /etc/shadow -p wa -k user_mgmt
+-w /etc/group -p wa -k user_mgmt
+-w /etc/sudoers -p wa -k sudo
+
+## ===== User/Group Management Commands =====
+-w /usr/sbin/useradd -p x -k user_mgmt
+-w /usr/sbin/userdel -p x -k user_mgmt
+-w /usr/sbin/usermod -p x -k user_mgmt
+-w /usr/sbin/groupadd -p x -k group_mgmt
+-w /usr/sbin/groupdel -p x -k group_mgmt
+-w /usr/sbin/groupmod -p x -k group_mgmt
+
+## ===== Root Exec Tracking =====
+-a always,exit -F arch=b64 -S execve -F euid=0 -k root_exec
+
+## ===== Watch Entire /etc =====
+-w /etc/ -p wa -k etc_changes
+
+## ===== SSH Configs & Keys =====
+-w /etc/ssh/sshd_config -p wa -k ssh_config
+-w /etc/ssh/ -p wa -k ssh_key
+
+## ===== PAM Changes =====
+-w /etc/pam.d/ -p wa -k pam_changes
+
+## ===== Temp Directory Execution =====
+-w /tmp -p wa -k tmp_exec
+-w /var/tmp -p wa -k tmp_exec
+-w /dev/shm -p wa -k tmp_exec
+
+
+## ===== systemd Tampering =====
+-w /etc/systemd/system/ -p wa -k systemd_changes
+-w /usr/lib/systemd/system/ -p wa -k systemd_changes
